@@ -6,7 +6,6 @@ set -x
 COMMIT="-X main.commit=${DRONE_COMMIT_SHA}"
 VERSION="-X main.version=${DRONE_TAG=latest}"
 
-go build \
-    -ldflags "-extldflags \"-static\" $COMMIT $VERSION"   \
+go build -ldflags "-extldflags \"-static\" $COMMIT $VERSION"   \
 	-o release/linux/amd64/drone-autoscaler \
-	github.com/drone/autoscaler/cmd/drone-autoscaler
+	cmd/drone-autoscaler/main.go

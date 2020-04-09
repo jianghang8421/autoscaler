@@ -201,7 +201,9 @@ func (p *planner) mark(ctx context.Context, n int) error {
 // helper function returns the number of pending and
 // running builds in the remote Drone installation.
 func (p *planner) count(ctx context.Context) (pending, running int, err error) {
+	logger := logger.FromContext(ctx)
 	stages, err := p.client.Queue()
+	logger.Infof("jianghang stages: %v", stages)
 	if err != nil {
 		return pending, running, err
 	}
